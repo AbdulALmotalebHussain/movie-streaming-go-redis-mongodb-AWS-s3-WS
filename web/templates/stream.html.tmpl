@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream Video</title>
+</head>
+<body>
+    <video id="videoPlayer" controls></video>
+
+    <script>
+        const videoID = "{{.ID}}";
+        const ws = new WebSocket(`ws://${window.location.host}/ws?videoID=${videoID}`);
+
+        ws.onmessage = function(event) {
+            if (typeof event.data === "string") {
+                const videoPlayer = document.getElementById('videoPlayer');
+                videoPlayer.src = event.data;
+            } else {
+                // Handle binary data (video segment)
+                // You might need to process binary data based on your requirements
+            }
+        };
+
+        ws.onclose = function(event) {
+            console.log('WebSocket connection closed:', event);
+        };
+
+        ws.onerror = function(event) {
+            console.error('WebSocket error:', event);
+        };
+    </script>
+</body>
+</html>

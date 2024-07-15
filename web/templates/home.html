@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Video Streaming</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="https://unpkg.com/htmx.org@1.5.0"></script>
+</head>
+<body>
+  <h1>Video Streaming</h1>
+  <a href="/upload">Upload Video</a>
+  <div id="video-list">
+    {{range .}}
+      <div class="video-item">
+        <h3>{{.Name}}</h3>
+        <a href="/stream?videoID={{.ID}}" hx-target="#video-player" hx-swap="innerHTML">Watch</a>
+      </div>
+    {{end}}
+  </div>
+  <div id="video-player"></div>
+</body>
+</html>

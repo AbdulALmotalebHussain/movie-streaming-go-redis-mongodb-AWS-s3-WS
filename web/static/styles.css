@@ -1,0 +1,15 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: #333;
+}
+
+.video-item {
+  margin-bottom: 10px;
+}
+
+#video-player {
+  margin-top: 20px;
+}
